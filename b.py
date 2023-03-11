@@ -1,4 +1,15 @@
-import itertools
+s = '1233'
 
-for a in itertools.product(range(1,10), repeat=2):
-    print(a)
+cir = []
+i = 0
+
+l = []
+
+for j in s:
+    l.append(j)
+
+print(l)
+
+c = []
+
+while i < len(l):

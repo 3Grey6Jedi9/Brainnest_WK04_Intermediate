@@ -1,31 +1,59 @@
+import itertools
 import math
 
-cool_numbers = set()
-def natural_gen():
-    n = 3
-    while n < 2177280:
+
+def is_prime(number):
+    if number == 1:
+        return True
+    else:
+        for i in range(2,int(math.sqrt(number))+1):
+            if number % i == 0:
+                return False
+            else:
+                continue
+        return True
+
+
+
+def circular(number):
+    number_str = str(number)
+    rotations = []
+
+    for i in range(len(number_str)):
+        rotations.append(int(number_str))
+        number_str = number_str[1:] + number_str[0]
+    return rotations
+
+
+
+def naturals_gen():
+    n = 1
+    while n < 1e6:
         yield n
         n += 1
 
-naturals = natural_gen()
+naturals = naturals_gen()
 
-def descom(number):
-    s = str(number)
-    d = []
-    for i in s:
-        d.append(int(i))
-    return d
+count = 0
 
+prime = ''
 for n in naturals:
-    d = descom(n)
-    f = []
-    for i in d:
-        f.append(math.factorial(i))
-    if n == sum(f):
-        cool_numbers.add(n)
+    c = circular(n)
+    for p in c:
+        if is_prime(p):
+            continue
+        else:
+            prime = 0
+    if prime != 0:
+        count += 1
+    prime = ''
+
+print(count)
 
 
 
-print(cool_numbers)
+
+
+
 
 
